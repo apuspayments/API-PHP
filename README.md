@@ -6,7 +6,7 @@ SDK da plataforma de pagamento Apus.
 ## Principais recursos
 
 * [x] Pagamentos por cartão.
-* [ ] Pagamentos recorrentes.
+* [x] Pagamentos recorrentes.
 * [ ] Pagamentos por transferência.
 * [ ] Consulta de pagamentos.
 
