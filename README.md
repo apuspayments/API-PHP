@@ -27,30 +27,36 @@ SDK da plataforma de pagamento Apus.
 
 Pagamentos utilizando número do cartão e senha
 
-### Requisição
-
-> POST https://api.apus.exchange/v1/pay/
-
 ```php
-{
-  "card": "0000111122223333",
-  "password": "*******",
-  "type": Blockchain.BTC,
-  "amount": 10.00,
-  "currency": "BRL"
-}
-```
- 
-### Resposta
+<?php
+require 'vendor/autoload.php';
 
-```php
-{
-    "status": true,
-    "message": "Pagamento aprovado",
-    "txid": "d5a82f2e8469b1d30a98cbca29c40cb732c46c6b19ab729e1785806237417153",
-    "data": {
-        "serial": "A666A",
-        "buyer": "João Comprador"
-    }
+use Apus\API30\Merchant;
+
+use Apus\API30\Ecommerce\Payment;
+
+// ...
+// Configure o ambiente
+$environment = $environment = Environment::sandbox();
+
+// Configure seu merchant
+$merchant = new Merchant('MERCHANT ID', 'MERCHANT KEY');
+
+// Crie uma instância de payment utilizando os dados de teste
+$payment->setType(Blockchain::BTC)
+        ->creditCard("00001111222233334444")
+        ->setPassword("*******")
+        ->setAmout(10.00)
+        ->setCurrency("BRL");
+
+// Crie o pagamento na Apus
+try {
+    // Configure o SDK com seu merchant e o ambiente apropriado para criar a venda
+    $paymentId = $payment->pay();
+} catch (ApusRequestException $e) {
+    // Em caso de erros de integração, podemos tratar o erro aqui.
+    // os códigos de erro estão todos disponíveis no manual de integração.
+    $error = $e->getError();
 }
+// ...
 ```
