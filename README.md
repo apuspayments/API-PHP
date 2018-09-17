@@ -1,103 +1,52 @@
 # API-PHP
 
-SDK da plataforma de pagamento Apus. 
+ApusPayments is a plataform to make payments using criptocurrencies. 
+
 * Language: PHP
 
-## Principais recursos
+[Documentation API (v0.0.1)](https://docs.apuspayments.com/)
 
-* [x] Pagamentos por cartão.
-* [x] Pagamentos recorrentes.
-* [ ] Pagamentos por transferência.
-* [ ] Consulta de pagamentos.
+## Examples of use 
 
-<hr>
-
-## Blockchains suportadas
-
-| Blockchain       | Constante              | Recorrente |
-|------------------|------------------------|------------|
-| Bitcoin          | Blockchain::BTC        | Sim        |
-| Decred           | CreditCard::DCR        | Sim        |
-| Ethereum         | CreditCard::ETH        | Sim        |
-| Litecoin         | CreditCard::LTC        | Sim        |
+* [ ] Payments by card
+* [ ] Recurring payments
+* [ ] Cancel payment
+* [ ] Consult payments
+* [ ] Cryptocurrency recharge
 
 <hr>
 
-## Pagamentos por cartão.
-
-Pagamentos utilizando número do cartão e senha.
+## Payments by card
 
 ```php
-<?php
-require 'vendor/autoload.php';
-
-use Apus\API30\Merchant;
-
-use Apus\API30\Ecommerce\Payment;
-
-// ...
-// Configure o ambiente
-$environment = $environment = Environment::sandbox();
-
-// Configure seu merchant
-$merchant = new Merchant('MERCHANT ID', 'MERCHANT KEY');
-
-// Crie uma instância de payment utilizando os dados de teste
-$payment->setType(Blockchain::BTC)
-        ->creditCard("00001111222233334444")
-        ->setPassword("*******")
-        ->setAmout(10.00)
-        ->setCurrency("BRL");
-
-// Crie o pagamento na Apus
-try {
-    // Configure o SDK com seu merchant e o ambiente apropriado para criar a venda
-    $paymentId = $payment->pay();
-} catch (ApusRequestException $e) {
-    // Em caso de erros de integração, podemos tratar o erro aqui.
-    // os códigos de erro estão todos disponíveis no manual de integração.
-    $error = $e->getError();
-}
-// ...
+<?php echo "Payments by card"; ?>
 ```
 
-## Pagamentos recorrentes.
+<hr>
 
-Pagamentos utilizando número do cartão e senha de forma recorrente.
+## Recurring payments
 
 ```php
-<?php
-require 'vendor/autoload.php';
+<?php echo "Recurring payments"); ?>
+```
+<hr>
 
-use Apus\API30\Merchant;
+## Cancel payment
 
-use Apus\API30\Ecommerce\Payment;
+```php
+<?php echo "Cancel payment"); ?>
+```
+<hr>
 
-// ...
-// Configure o ambiente
-$environment = $environment = Environment::sandbox();
+## Consult payments
 
-// Configure seu merchant
-$merchant = new Merchant('MERCHANT ID', 'MERCHANT KEY');
+```php
+<?php echo "Consult payments"); ?>
+```
+<hr>
 
-// Crie uma instância de payment utilizando os dados de teste
-$payment->setType(Blockchain::BTC)
-        ->creditCard("00001111222233334444")
-        ->setPassword("*******")
-        ->setAmout(10.00)
-        ->setCurrency("BRL");
+## Cryptocurrency recharge
 
-// Configure o pagamento recorrente
-$payment->recurrentPayment(true)->setInterval(RecurrentPayment::MONTHLY);
-
-// Crie o pagamento na Apus
-try {
-    // Configure o SDK com seu merchant e o ambiente apropriado para criar a venda
-    $paymentId = $payment->pay();
-} catch (ApusRequestException $e) {
-    // Em caso de erros de integração, podemos tratar o erro aqui.
-    // os códigos de erro estão todos disponíveis no manual de integração.
-    $error = $e->getError();
-}
-// ...
+```php
+<?php echo "Cryptocurrency recharge"); ?>
 ```
