@@ -1,0 +1,19 @@
+{
+    "name": "apus/client",
+    "version": "dev",
+    "description": "Apus API PHP Client",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.3.*"
+    },  
+    "autoload": {
+        "psr-4": {
+            "Apus\\": "src/Apus"
+        }
+    }
+}
