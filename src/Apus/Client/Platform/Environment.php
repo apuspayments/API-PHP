@@ -15,6 +15,7 @@ class Environment {
         $this->version = $version;
     }
     
+    //TODO: alterar para BaseURI
     public function getURL() : string {
         return $this->protocol . "://" . $this->host . "/" . $this->version;
     }
