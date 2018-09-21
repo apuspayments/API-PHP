@@ -6,5 +6,6 @@ class AuthenticationTest extends TestCase {
     
     public function testConstruct() {
         $auth = new Authentication("123456", "mypass");
+        $this->assertInstanceOf('Apus\Client\Model\Authentication', $auth);
     }
 }
