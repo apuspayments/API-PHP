@@ -4,6 +4,7 @@ namespace Apus\Client\Platform;
 use Apus\Client\Model\Vendor;
 use Psr\Http\Message\ResponseInterface;
 use Apus\Client\Model\SearchResult;
+use Apus\Client\Model\SaleSpecification;
 
 class Platform {
 
@@ -79,6 +80,18 @@ class Platform {
         }
         
         return $results;
+    }
+    
+    public function checkout(SaleSpecification $saleSpecification) {
+        $url = "{$this->environment->getURL()}/checkout";
+        $options = array(
+            "json" => $saleSpecification->jsonSerialize()
+        );
+        $response = $this->httpClient->request('POST', $url, $options);
+        $json = $this->checkResponseBody($response);
+        
+        return $json;
+        
     }
     
     private function getParameters(array $allowed) : array {
