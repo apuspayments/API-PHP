@@ -1,5 +1,5 @@
 <?php
-namespace Apus\Client\Platform;
+namespace ApusPayments\Constants;
 
 class Environment {
     
@@ -15,12 +15,15 @@ class Environment {
         $this->version = $version;
     }
     
-    //TODO: alterar para BaseURI
-    public function getURL() : string {
+    public function getBaseURI() : string {
         return $this->protocol . "://" . $this->host . "/" . $this->version;
     }
     
     public static function sandbox() : Environment {
         return new Environment("https", "sandbox.apuspayments.com", "v1");
+    }
+    
+    public static function production() : Environment {
+        return new Environment("https", "api.apuspayments.com", "v1");
     }
 }
