@@ -1,5 +1,5 @@
 <?php
-namespace Apus\Json;
+namespace ApusPayments\Json;
 
 interface JsonValueMapper {
 

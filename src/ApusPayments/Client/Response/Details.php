@@ -1,7 +1,7 @@
 <?php
 namespace ApusPayments\Client\Response;
 
-use Apus\Json\JsonValueMapper;
+use ApusPayments\Json\JsonValueMapper;
 
 class Details implements JsonValueMapper {
     
@@ -22,10 +22,12 @@ class Details implements JsonValueMapper {
     
     /**
      * {@inheritDoc}
-     * @see \Apus\Json\JsonValueMapper::updateValues()
+     * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
     public function updateValues(\stdClass $json) {
-        
+        $this->setLocation($json->location);
+        $this->setParam($json->param);
+        $this->setMsg($json->msg);
     }
     
     /**
