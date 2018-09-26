@@ -29,7 +29,11 @@ class CancelPayment implements \JsonSerializable {
      * @see \JsonSerializable::jsonSerialize()
      */
     public function jsonSerialize() {
-        return array();
+        return array(
+            "password" => $this->getPassword(),
+            "txId" => $this->getTxId(),
+            "vendorKey" => $this->getVendorKey(),
+        );
     }
     /**
      * @return string

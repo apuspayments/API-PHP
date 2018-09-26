@@ -59,7 +59,15 @@ class SearchPayment implements \JsonSerializable {
      * @see \JsonSerializable::jsonSerialize()
      */
     public function jsonSerialize() {
-        return array();
+        return array(
+            "blockchain" => $this->getBlockchain(),
+            "buyer" => $this->getBuyer(),
+            "coinAmount" => $this->getCoinAmount(),
+            "currency" => $this->getCurrency(),
+            "timestamp" => $this->getTimestamp(),
+            "txId" => $this->getTxId(),
+            "vendorKey" => $this->getVendorKey(),
+        );
     }
     
     /**

@@ -47,7 +47,14 @@ class RechargeCryptoBalance implements \JsonSerializable {
      * @see \JsonSerializable::jsonSerialize()
      */
     public function jsonSerialize() {
-        return array();
+        return array(
+            "amount" => $this->getAmount(),
+            "blockchain" => $this->getBlockchain(),
+            "currency" => $this->getCurrency(),
+            "pan" => $this->getPan(),
+            "password" => $this->getPassword(),
+            "vendorKey" => $this->getVendorKey(),
+        );
     }
     
     /**

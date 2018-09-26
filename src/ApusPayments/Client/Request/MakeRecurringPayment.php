@@ -67,7 +67,17 @@ class MakeRecurringPayment implements \JsonSerializable {
      * @see \JsonSerializable::jsonSerialize()
      */
     public function jsonSerialize() {
-        return array();
+        return array(
+            "amount" => $this->getAmount(),
+            "blockchain" => $this->getBlockchain(),
+            "currency" => $this->getCurrency(),
+            "execute" => $this->isExecute(),
+            "frequency" => $this->getFrequency(),
+            "pan" => $this->getPan(),
+            "password" => $this->getPassword(),
+            "period" => $this->getPeriod(),
+            "vendorKey" => $this->getVendorKey(),
+        );
     }
     
     /**
