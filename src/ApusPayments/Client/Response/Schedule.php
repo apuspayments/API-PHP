@@ -30,7 +30,10 @@ class Schedule implements JsonValueMapper {
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
     public function updateValues(\stdClass $json) {
-        
+        $this->setExecute($json->execute);
+        $this->setFrequency($json->frequency);
+        $this->setId($json->id);
+        $this->setPeriod($json->period);
     }
     
     /**

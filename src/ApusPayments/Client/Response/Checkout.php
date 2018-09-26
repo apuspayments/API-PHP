@@ -45,7 +45,27 @@ class Checkout implements JsonValueMapper {
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
     public function updateValues(\stdClass $json) {
+        $buyer = new Buyer();
+        $buyer->updateValues($json->buyer);
         
+        $coin = new Coin();
+        $coin->updateValues($json->coin);
+        
+        $currency = new Currency();
+        $currency->updateValues($json->currency);
+        
+        $date = \DateTime::createFromFormat(\DateTime::ISO8601, $json->date);
+        
+        $seller = new Seller();
+        $seller->updateValues($json->seller);
+        
+        $this->setBuyer($buyer);
+        $this->setCoin($coin);
+        $this->setCurrency($currency);
+        $this->setDate($date);
+        $this->setId($json->id);
+        $this->setSeller($seller);
+        $this->setTxId($json->txId);
     }
     
     /**

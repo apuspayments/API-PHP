@@ -19,7 +19,20 @@ class Payment implements JsonValueMapper {
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
     public function updateValues(\stdClass $json) {
+        $status = new Status();
+        $status->updateValues($json->status);
         
+        $paymentDetails = array();
+        
+        foreach($json->data as $data) {
+            $paymentDetail = new PaymentDetail();
+            $paymentDetail->updateValues($data);
+            
+            $paymentDetails[] = $paymentDetail;
+        }
+        
+        $this->setStatus($status);
+        $this->setData($paymentDetails);
     }
     
     /**

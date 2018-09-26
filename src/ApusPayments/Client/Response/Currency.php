@@ -20,6 +20,8 @@ class Currency implements JsonValueMapper {
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
     public function updateValues(\stdClass $json) {
+        $this->setAmount($json->amount);
+        $this->setName($json->name);
     }
 
     /**
