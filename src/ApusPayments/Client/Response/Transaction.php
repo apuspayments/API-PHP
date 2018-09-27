@@ -24,7 +24,13 @@ class Transaction implements JsonValueMapper {
      * {@inheritDoc}
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
-    public function updateValues(\stdClass $json) {   
+    public function updateValues(\stdClass $json) {
+        $buyer = new Buyer();
+        $buyer->updateValues($json->buyer);
+        
+        $this->setBuyer($buyer);
+        $this->setTimestamp($json->timestamp);
+        $this->setTxId($json->txId);
     }
     
     /**
@@ -58,14 +64,14 @@ class Transaction implements JsonValueMapper {
     /**
      * @return string
      */
-    public function getBuyer() : string {
+    public function getBuyer() : Buyer {
         return $this->buyer;
     }
 
     /**
      * @param string $buyer
      */
-    public function setBuyer(string $buyer) {
+    public function setBuyer(Buyer $buyer) {
         $this->buyer = $buyer;
     }
 }

@@ -17,7 +17,12 @@ class PaymentTest extends TestCase {
         return '{
         	"status": {
         		"code": "021",
-        		"message": "Query performed successfully"
+        		"message": "Query performed successfully",
+                "details" : {
+                    "location" : "location",
+                    "param" : "param",
+                    "msg" : "msg"
+                }
 
         	},
         	"data": [{
