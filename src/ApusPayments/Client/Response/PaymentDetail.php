@@ -54,7 +54,14 @@ class PaymentDetail implements JsonValueMapper {
         $currency = new Currency();
         $currency->updateValues($json->currency);
         
-        $date = \DateTime::createFromFormat(\DateTime::ISO8601, $json->date);
+        if(property_exists($json, "date")) {
+            $date = \DateTime::createFromFormat(\DateTime::ISO8601, $json->date);
+            $this->setDate($date);
+        }
+        
+        if(property_exists($json, "txId")) {
+            $this->setTxId($json->txId);
+        }
         
         $seller = new Seller();
         $seller->updateValues($json->seller);
@@ -62,10 +69,9 @@ class PaymentDetail implements JsonValueMapper {
         $this->setBuyer($buyer);
         $this->setCoin($coin);
         $this->setCurrency($currency);
-        $this->setDate($date);
+        
         $this->setId($json->id);
         $this->setSeller($seller);
-        $this->setTxId($json->txId);
     }
     
     /**

@@ -45,14 +45,23 @@ class Checkout implements JsonValueMapper {
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
     public function updateValues(\stdClass $json) {
-        $buyer = new Buyer();
-        $buyer->updateValues($json->buyer);
+        if(property_exists($json, "buyer")) {
+            $buyer = new Buyer();
+            $buyer->updateValues($json->buyer);
+            $this->setBuyer($buyer);
+        }
         
-        $coin = new Coin();
-        $coin->updateValues($json->coin);
+        if(property_exists($json, "coin")) {
+            $coin = new Coin();
+            $coin->updateValues($json->coin);
+            $this->setCoin($coin);
+        }
         
-        $currency = new Currency();
-        $currency->updateValues($json->currency);
+        if(property_exists($json, "currency")) {
+            $currency = new Currency();
+            $currency->updateValues($json->currency);
+            $this->setCurrency($currency);
+        }
         
         if(property_exists($json, 'date')) $date = \DateTime::createFromFormat(\DateTime::ISO8601, $json->date);
         
@@ -61,9 +70,6 @@ class Checkout implements JsonValueMapper {
             $seller->updateValues($json->seller);
         }
         
-        $this->setBuyer($buyer);
-        $this->setCoin($coin);
-        $this->setCurrency($currency);
         if(property_exists($json, 'date'))  $this->setDate($date);
         if(property_exists($json, 'id')) $this->setId($json->id);
         if(property_exists($json, 'seller')) $this->setSeller($seller);

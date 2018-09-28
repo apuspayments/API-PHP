@@ -25,12 +25,14 @@ class Status implements JsonValueMapper {
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
     public function updateValues(\stdClass $json) {
-        $details = new Details();
-        $details->updateValues($json->details);
+        if(property_exists($json, "details")) {
+            $details = new Details();
+            $details->updateValues($json->details);
+            $this->setDetails($details);
+        }
         
         $this->setCode($json->code);
         $this->setMessage($json->message);
-        $this->setDetails($details);
     }
     
     /**

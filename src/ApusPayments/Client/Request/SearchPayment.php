@@ -71,6 +71,7 @@ class SearchPayment implements \JsonSerializable {
     }
     
     /**
+     * TODO: adicionar check empty + exception (search)
      * @return string
      */
     public function getVendorKey() : string {
@@ -180,5 +181,9 @@ class SearchPayment implements \JsonSerializable {
      */
     public function setBuyer(string $buyer) {
         $this->buyer = $buyer;
-    }    
+    }
+    
+    public function getParameters() : string {
+        return "";
+    }
 }

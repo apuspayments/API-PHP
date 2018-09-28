@@ -51,7 +51,21 @@ class Platform {
     }
     
     public function searchPayment(SearchPayment $searchPayment) : Payment {
-        return new Payment();
+        $url = "{$this->environment->getBaseURI()}/checkout/{$searchPayment->getVendorKey()}";
+        
+        $options = array(
+            "query" => array(),
+            "headers" => $this->getHeaders(),
+        );
+        
+        $response = $this->httpClient->request('GET', $url, $options);
+        
+        $json = $this->checkResponseBody($response);
+        
+        $payment = new Payment();
+        $payment->updateValues($json);
+        
+        return $payment;
     }
     
     public function cancelPayment(CancelPayment $cancelPayment) : Checkout {
@@ -59,7 +73,21 @@ class Platform {
     }
     
     public function rechargeCryptoBalance(RechargeCryptoBalance $rechargeCryptoBalance) : Checkout {
-        return new Checkout();
+        $url = "{$this->environment->getBaseURI()}/checkin";
+        
+        $options = array(
+            "json" => $rechargeCryptoBalance->jsonSerialize(),
+            "headers" => $this->getHeaders(),
+        );
+        
+        $response = $this->httpClient->request('POST', $url, $options);
+        
+        $json = $this->checkResponseBody($response);
+        
+        $checkout = new Checkout();
+        $checkout->updateValues($json);
+        
+        return $checkout;
     }
     
     private function getHeaders() : array {
