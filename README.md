@@ -6,8 +6,8 @@ ApusPayments is a plataform to make payments using criptocurrencies.
 
 [Documentation API (v0.0.1)](https://docs.apuspayments.com/)
 
-[![Total Downloads](https://poser.pugx.org/apuspayments/client/d/total.png)](https://packagist.org/packages/apuspayments/client)
-[![Latest Stable Version](https://poser.pugx.org/apuspayments/client/v/stable.png)](https://packagist.org/packages/apuspayments/client)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/apuspayments/client.svg?style=flat-square)](https://packagist.org/packages/apuspayments/client)
+[![Total Downloads](https://img.shields.io/packagist/dt/apuspayments/client.svg?style=flat-square)](https://packagist.org/packages/apuspayments/client)
 
 ## Examples of use 
 
