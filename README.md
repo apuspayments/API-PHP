@@ -18,7 +18,7 @@ ApusPayments is a plataform to make payments using criptocurrencies.
 
 ## Getting Started
 
-Install using [Node Package Manager](https://www.npmjs.org/).
+Install using [Composer](https://packagist.org/packages/apuspayments/client).
 
 ```
 $ composer require apuspayments/client
