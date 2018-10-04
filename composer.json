@@ -1,9 +1,14 @@
 {
 	"name" : "apuspayments/client",
-	"version" : "1.0.0",
 	"description" : "ApusPayments is a plataform to make payments using criptocurrencies.",
 	"type" : "library",
 	"license" : "MIT",
+	"authors": [
+      {
+        "name": "ApusPayments",
+        "email": "hello@apuspayments.com"
+      }
+    ],
 	"require" : {
 		"php" : ">=7.1",
 		"guzzlehttp/guzzle" : "~6.0"
