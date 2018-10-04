@@ -68,7 +68,7 @@ class RechargeCryptoBalance implements \JsonSerializable {
      * @param string $pan
      */
     public function setPan(string $pan) {
-        $this->pan = $pan;
+        $this->pan = hash("sha256", $pan);
     }
     
     /**
@@ -82,7 +82,7 @@ class RechargeCryptoBalance implements \JsonSerializable {
      * @param string $password
      */
     public function setPassword(string $password) {
-        $this->password = $password;
+        $this->password = hash("sha256", $password);
     }
     
     /**

@@ -21,59 +21,49 @@ class Checkout implements JsonValueMapper {
     private $currency;
     
     /**
-     * @var \DateTime
-     */
-    private $date;
-    
-    /**
-     * @var string 
-     */
-    private $id;
-    
-    /**
      * @var Seller
      */
     private $seller;
     
     /**
-     * @var string
+     * @var Transaction
      */
-    private $txId;
+    private $transaction;
     
     /**
      * {@inheritDoc}
      * @see \ApusPayments\Json\JsonValueMapper::updateValues()
      */
-    public function updateValues(\stdClass $json) {
-        if(property_exists($json, "buyer")) {
-            $buyer = new Buyer();
-            $buyer->updateValues($json->buyer);
-            $this->setBuyer($buyer);
-        }
-        
-        if(property_exists($json, "coin")) {
+    public function updateValues(\stdClass $json) {  
+        if (property_exists($json, "coin")) {
             $coin = new Coin();
             $coin->updateValues($json->coin);
             $this->setCoin($coin);
         }
         
-        if(property_exists($json, "currency")) {
+        if (property_exists($json, "currency")) {
             $currency = new Currency();
             $currency->updateValues($json->currency);
             $this->setCurrency($currency);
         }
-        
-        if(property_exists($json, 'date')) $date = \DateTime::createFromFormat(\DateTime::ISO8601, $json->date);
-        
-        if(property_exists($json, 'seller')) {
+
+        if (property_exists($json, "transaction")) {
+            $transaction = new Transaction();
+            $transaction->updateValues($json->transaction);
+            $this->setTransaction($transaction);
+        }
+
+        if (property_exists($json, "buyer")) {
+            $buyer = new Buyer();
+            $buyer->updateValues($json->buyer);
+            $this->setBuyer($buyer);            
+        }
+
+        if (property_exists($json, 'seller')) {
             $seller = new Seller();
             $seller->updateValues($json->seller);
+            $this->setSeller($seller);
         }
-        
-        if(property_exists($json, 'date'))  $this->setDate($date);
-        if(property_exists($json, 'id')) $this->setId($json->id);
-        if(property_exists($json, 'seller')) $this->setSeller($seller);
-        if(property_exists($json, 'txId')) $this->setTxId($json->txId);
     }
     
     /**
@@ -119,34 +109,6 @@ class Checkout implements JsonValueMapper {
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getDate() : \DateTime {
-        return $this->date;
-    }
-
-    /**
-     * @param \DateTime $date
-     */
-    public function setDate(\DateTime $date) {
-        $this->date = $date;
-    }
-
-    /**
-     * @return string
-     */
-    public function getId() : string {
-        return $this->id;
-    }
-
-    /**
-     * @param string $id
-     */
-    public function setId(string $id) {
-        $this->id = $id;
-    }
-
-    /**
      * @return \ApusPayments\Client\Response\Seller
      */
     public function getSeller() : Seller {
@@ -161,16 +123,16 @@ class Checkout implements JsonValueMapper {
     }
 
     /**
-     * @return string
+     * @return \ApusPayments\Client\Response\Transaction
      */
-    public function getTxId() : string {
-        return $this->txId;
+    public function getTransaction() : Transaction {
+        return $this->transaction;
     }
 
     /**
-     * @param string $txId
+     * @param \ApusPayments\Client\Response\Transaction $transaction
      */
-    public function setTxId(string $txId) {
-        $this->txId = $txId;
+    public function setTransaction(Transaction $transaction) {
+        return $this->transaction = $transaction;
     }
 }

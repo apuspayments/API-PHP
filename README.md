@@ -6,24 +6,39 @@ ApusPayments is a plataform to make payments using criptocurrencies.
 
 [Documentation API (v0.0.1)](https://docs.apuspayments.com/)
 
-## TODO
-* [ ] Check response Checkout
-* [ ] Check response Buyer
-
 ## Examples of use 
 
-* [ ] Payments by card
-* [ ] Recurring payments
-* [ ] Cancel payment
-* [ ] Consult payments
-* [ ] Cryptocurrency recharge
+* [x] Payments by card
+* [x] Recurring payments
+* [x] Cancel payment
+* [x] Consult payments
+* [x] Cryptocurrency recharge
 
 <hr>
+
+## Getting Started
+
+Install using [Node Package Manager](https://www.npmjs.org/).
+
+```
+$ composer require apuspayments/client
+```
 
 ## Payments by card
 
 ```php
-<?php echo "Payments by card"; ?>
+$apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
+
+$makePayment = new MakePayment();
+
+$makePayment->setAmount(0.01);
+$makePayment->setBlockchain(BlockChainType::LTC);
+$makePayment->setCurrency(CurrencyType::BRL);
+$makePayment->setPan("9999999999999999");
+$makePayment->setPassword("1234");
+$makePayment->setVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
+
+$makePaymentResponse = $apusPaymentsAPI->makePayment($makePayment);
 ```
 
 <hr>
@@ -31,31 +46,64 @@ ApusPayments is a plataform to make payments using criptocurrencies.
 ## Recurring payments
 
 ```php
-$spec->withPan("0866a6eaea5cb085e4cf6ef19296bf19647552dd5f96f1e530db3ae61837efe7")
-->withPassword("c66f1f34f49381e467d3abd43c77947f5d1dd362fd0eec6c2c1f27233ae9adf9")
-->withBlockchain(Blockchain::LTC)
-->withAmount(213.88)
-->withCurrency(Currency::BRL)
-->withVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
+$apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
+
+$makeRecurringPayment = new MakeRecurringPayment();
+
+$makeRecurringPayment->setAmount(0.01);
+$makeRecurringPayment->setBlockchain(BlockChainType::LTC);
+$makeRecurringPayment->setCurrency(CurrencyType::BRL);
+$makeRecurringPayment->setPeriod(PeriodType::M);
+$makeRecurringPayment->setFrequency(12);
+$makeRecurringPayment->setExecute(true);
+$makeRecurringPayment->setPan("9999999999999999");
+$makeRecurringPayment->setPassword("1234");
+$makeRecurringPayment->setVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
+
+$makeRecurringPaymentResponse = $apusPaymentsAPI->makeRecurringPayment($makePayment);
 ```
 <hr>
 
 ## Cancel payment
 
 ```php
-<?php echo "Cancel payment"); ?>
+$apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
+
+$cancelPayment = new CancelPayment();
+
+$cancelPayment->setTxId("1234"));
+$cancelPayment->setPassword("1234");
+$cancelPayment->setVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
+
+$cancelPaymentResponse = $apusPaymentsAPI->cancelPayment($cancelPayment);
 ```
 <hr>
 
 ## Consult payments
 
 ```php
-<?php echo "Consult payments"); ?>
+$apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
+
+$searchPayment = new SearchPayment();
+$searchPayment->setVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
+
+$searchPaymentResponse = $apusPaymentsAPI->searchPayment($searchPayment);
 ```
 <hr>
 
 ## Cryptocurrency recharge
 
 ```php
-<?php echo "Cryptocurrency recharge"); ?>
+$apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
+
+$rechargeCryptoBalance = new RechargeCryptoBalance();
+
+$rechargeCryptoBalance->setAmount(100000.00);
+$rechargeCryptoBalance->setBlockchain(BlockChainType::LTC);
+$rechargeCryptoBalance->setCurrency(CurrencyType::BRL);
+$rechargeCryptoBalance->setPan("9999999999999999"));
+$rechargeCryptoBalance->setPassword("1234"));
+$rechargeCryptoBalance->setVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
+
+$rechargeCryptoBalanceResponse = $apusPaymentsAPI->rechargeCryptoBalance($rechargeCryptoBalance);
 ```

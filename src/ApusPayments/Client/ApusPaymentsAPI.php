@@ -11,7 +11,7 @@ use ApusPayments\Client\Response\Payment;
 use ApusPayments\Constants\Environment;
 use Psr\Http\Message\ResponseInterface;
 
-class Platform {
+class ApusPaymentsAPI {
     
     /**
      * @var Environment
@@ -47,7 +47,21 @@ class Platform {
     }
     
     public function makeRecurringPayment(MakeRecurringPayment $makeRecurringPayment) : Checkout {
-        return new Checkout();
+        $url = "{$this->environment->getBaseURI()}/checkout/recurrent";
+        
+        $options = array(
+            "json" => $makeRecurringPayment->jsonSerialize(),
+            "headers" => $this->getHeaders(),
+        );
+        
+        $response = $this->httpClient->request('POST', $url, $options);
+        
+        $json = $this->checkResponseBody($response);
+        
+        $checkout = new Checkout();
+        $checkout->updateValues($json);
+        
+        return $checkout;
     }
     
     public function searchPayment(SearchPayment $searchPayment) : Payment {
@@ -69,7 +83,21 @@ class Platform {
     }
     
     public function cancelPayment(CancelPayment $cancelPayment) : Checkout {
-        return new Checkout();
+        $url = "{$this->environment->getBaseURI()}/checkout";
+        
+        $options = array(
+            "json" => $cancelPayment->jsonSerialize(),
+            "headers" => $this->getHeaders(),
+        );
+        
+        $response = $this->httpClient->request('DELETE', $url, $options);
+        
+        $json = $this->checkResponseBody($response);
+        
+        $checkout = new Checkout();
+        $checkout->updateValues($json);
+        
+        return $checkout;
     }
     
     public function rechargeCryptoBalance(RechargeCryptoBalance $rechargeCryptoBalance) : Checkout {
