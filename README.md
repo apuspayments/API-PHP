@@ -4,7 +4,7 @@ ApusPayments is a plataform to make payments using criptocurrencies.
 
 * Language: PHP
 
-[Documentation API (v0.0.1)](https://docs.apuspayments.com/)
+[Documentation API](https://docs.apuspayments.com/)
 
 [![Latest Stable Version](https://poser.pugx.org/apuspayments/client/version)](https://packagist.org/packages/apuspayments/client)
 [![Latest Unstable Version](https://poser.pugx.org/apuspayments/client/v/unstable)](//packagist.org/packages/apuspayments/client)
