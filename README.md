@@ -35,7 +35,7 @@ $apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
 
 $makePayment = new MakePayment();
 
-$makePayment->setAmount(0.01);
+$makePayment->setAmount(10.00);
 $makePayment->setBlockchain(BlockChainType::LTC);
 $makePayment->setCurrency(CurrencyType::BRL);
 $makePayment->setPan("9999999999999999");
@@ -54,7 +54,7 @@ $apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
 
 $makeRecurringPayment = new MakeRecurringPayment();
 
-$makeRecurringPayment->setAmount(0.01);
+$makeRecurringPayment->setAmount(10.00);
 $makeRecurringPayment->setBlockchain(BlockChainType::LTC);
 $makeRecurringPayment->setCurrency(CurrencyType::BRL);
 $makeRecurringPayment->setPeriod(PeriodType::M);
@@ -75,7 +75,7 @@ $apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
 
 $cancelPayment = new CancelPayment();
 
-$cancelPayment->setTxId("1234"));
+$cancelPayment->setTxId("2bf779e2a311c2629df977b0bb105879411fd71f5839972c4ed1d3278f80170f");
 $cancelPayment->setPassword("1234");
 $cancelPayment->setVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
 
@@ -102,11 +102,11 @@ $apusPaymentsAPI = new ApusPaymentsAPI(Environment::sandbox());
 
 $rechargeCryptoBalance = new RechargeCryptoBalance();
 
-$rechargeCryptoBalance->setAmount(100000.00);
+$rechargeCryptoBalance->setAmount(10.00);
 $rechargeCryptoBalance->setBlockchain(BlockChainType::LTC);
 $rechargeCryptoBalance->setCurrency(CurrencyType::BRL);
-$rechargeCryptoBalance->setPan("9999999999999999"));
-$rechargeCryptoBalance->setPassword("1234"));
+$rechargeCryptoBalance->setPan("9999999999999999");
+$rechargeCryptoBalance->setPassword("1234");
 $rechargeCryptoBalance->setVendorKey("5f5bdaed-f82b-4b82-b3f5-1d562633da5b");
 
 $rechargeCryptoBalanceResponse = $apusPaymentsAPI->rechargeCryptoBalance($rechargeCryptoBalance);
